@@ -1,0 +1,9 @@
+<%- include('../templates/header.ejs') %>
+<main>
+    <form action="/users/signin" method="post">
+        <input type="text" name="username" placeholder="Introduce tu usuario" required>
+        <input type="password" name="password" placeholder="Introduce tu contraseña" required>
+        <button>Entrar</button>
+    </form>
+</main>
+<%- include('../templates/footer.ejs') %>
