@@ -121,3 +121,43 @@
     width: 50%;
     margin: 40px 0;
 }
+
+#main #config{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    padding: 5% 0%;
+}
+
+#main #config .tab{
+    display: flex;
+    flex-direction: column;
+}
+
+#main #config .tab .tablinks{
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#main #config .tab .tablinks.active{
+    background-color: var(--main-hover-color);
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+
+#main #config .tab .tablinks:hover {
+    background-color: var(--main-hover-color);
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+#main #config .tabcontent{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    padding: 0% 2%;
+}
