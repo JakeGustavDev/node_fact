@@ -1,8 +1,33 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Scandinavia</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
+
+<body>
+    <header>
+        <nav id="mainNav" class="nav">
+            <ul>
+                <% if(typeof info == 'object' && info) { %>
+                    <a href="/main" class="navHead">
+                <% }else{ %>
+                    <a href="/" class="navHead">
+                <% } %>
+                    <li class="navHead">Club Scandinavia</li>
+                </a>
+                <% if(typeof info == 'object' && info) { %>
+                    <li class=""><%= info.username %></li>
+                    <a href="/config"><li class="navItem">Configuración</li></a>
+                    <li class="navItem">Salir</li>
+                <% }else{ %>
+                    <li class="navItem">Ingresar</li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <main id="main">

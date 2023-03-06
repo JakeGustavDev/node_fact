@@ -1,14 +1,13 @@
-const { useColors } = require('debug/src/browser');
 const express = require('express');
 const router = express.Router();
 let User = require('../models/User.js');
 const passport = require('passport');
 
-/* GET users listing. */
-router.get('/signin', function(req, res, next) {
-  console.log(req.session.messages);
-  res.render('pages/signin');
-});
+// GET users listing. 
+// router.get('/signin', function(req, res, next) {
+//   console.log(req.session.messages);
+//   res.render('pages/signin');
+// });
 
 router.post('/signin',
   passport.authenticate('local', { failureRedirect: '/users/signin', failureMessage: true }),
@@ -31,11 +30,11 @@ router.post('/signup', function(req, res, next) {
   const user = new User(info);
   user.setPassword(req.body.password);
   user.save();
-  res.send('respond with a resource');
+  res.send('guardado');
 });
 
 router.get('/logout', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('salir');
 });
 
 module.exports = router;

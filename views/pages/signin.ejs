@@ -1,9 +1,19 @@
-<%- include('../templates/header.ejs') %>
-<main>
-    <form action="/users/signin" method="post">
-        <input type="text" name="username" placeholder="Introduce tu usuario" required>
-        <input type="password" name="password" placeholder="Introduce tu contraseña" required>
-        <button>Entrar</button>
+<%- include('templates/header.ejs') %>
+<div id="login">
+    <img src="/images/logo.png" alt="">
+    <form id="loginForm" action="/users/signin" method="post">
+        <div class="formInput">
+            <label for="">Usuario:</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="formInput">
+            <label for="">Contraseña:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="formInput">
+            <button>Acceder</button>
+        </div>
     </form>
-</main>
-<%- include('../templates/footer.ejs') %>
+</div>
+<%- include('templates/footer.ejs') %>
+
