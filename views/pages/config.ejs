@@ -7,8 +7,32 @@
         </ul>
 
         <div id="users" class="tabcontent">
-            <h3>Usuarios</h3>
-            <p>London is the capital city of England.</p>
+            <form action="/config/signup" method="post">
+                <div class="formInput">
+                    <label for="">Usuario:</label>
+                    <input type="text" name="username" placeholder="Introduce usuario" required>
+                </div>
+                <div class="formInput">
+                    <label for="">Correo:</label>
+                    <input type="text" name="email" placeholder="Introduce correo" required>
+                </div>
+                <div class="formInput">
+                    <label for="">Contraseña:</label>
+                    <input type="password" name="password" placeholder="Introduce contraseña" required>
+                </div>
+
+                <div class="formInput">
+                    <label for="">Tipo:</label>
+                    <select name="level">
+                        <option value="receptioner">Recepcionista</option>
+                        <option value="bartender">Bartender</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <div class="formInput">
+                    <button>Guardar</button>
+                </div>
+            </form>
         </div>
 
         <div id="proser" class="tabcontent">

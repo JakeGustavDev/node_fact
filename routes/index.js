@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const auth = require('../config/auth.js');
+const {auth, authAdmin} = require('../config/auth.js');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('pages/signin');
+  res.render('pages/signin', {messages: req.flash()});
 });
 
 router.get('/main', auth, function (req, res, next) {

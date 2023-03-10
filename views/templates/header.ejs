@@ -22,7 +22,9 @@
                 </a>
                 <% if(typeof info == 'object' && info) { %>
                     <li class=""><%= info.username %></li>
-                    <a href="/config"><li class="navItem">Configuración</li></a>
+                    <% if(info.level=="admin" ){ %>
+                        <a href="/config"><li class="navItem">Configuración</li></a>
+                    <% } %>
                     <li class="navItem">Salir</li>
                 <% }else{ %>
                     <li class="navItem">Ingresar</li>
@@ -31,3 +33,15 @@
         </nav>
     </header>
     <main id="main">
+        <% if(typeof messages == 'object' && messages && messages.error != undefined) { %>
+            <div id="flashError" class="error"><%= messages.error %></div>
+            <script>
+                 window.setTimeout(()=>{ document.getElementById('flashError').classList.add('out') }, 5000);
+            </script>
+        <% } %>
+        <% if(typeof messages == 'object' && messages && messages.success != undefined) { %>
+            <div id="flashSuccess" class="success"><%= messages.success %></div>
+            <script>
+                 window.setTimeout(()=>{ document.getElementById('flashSuccess').classList.add('out') }, 5000);
+            </script>
+        <% } %>

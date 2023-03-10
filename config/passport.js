@@ -6,11 +6,11 @@ const User = mongoose.model('User');
 passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password'
-}, function (username, password, done) {
-  User.findOne({ username: username })
+}, async function (username, password, done) {
+  await User.findOne({ username: username })
     .then(function (user) {
       if (!user || !user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect username or password.' });
+        return done(null, false, { message: 'Usuario o contraseña incorrectos.' });
       }
       return done(null, user);
     }).catch(done);
