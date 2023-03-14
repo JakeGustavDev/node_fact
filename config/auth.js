@@ -8,16 +8,22 @@ const auth = async (req, res, next) => {
 
         const verified = jwt.verify(token, secret);
         if (verified) {
-            next();
+            if(verified.active){
+                next();
+            }else{
+                // Access Denied
+                req.flash('error', 'Usuario no activo');
+                return res.clearCookie("info").redirect('/');
+            }
         } else {
             // Access Denied
             req.flash('error', 'No autorizado');
-            return res.redirect('/');
+            return res.clearCookie("info").redirect('/');
         }
     } catch (error) {
         // Access Denied
         req.flash('error', 'No autorizado');
-        return res.redirect('/');
+        return res.clearCookie("info").redirect('/');
     }
 };
 
@@ -27,16 +33,22 @@ const authAdmin = async (req, res, next) => {
 
         const verified = jwt.verify(token, secret);
         if (verified && verified.level == "admin") {
-            next();
+            if(verified.active){
+                next();
+            }else{
+                // Access Denied
+                req.flash('error', 'Usuario no activo');
+                return res.clearCookie("info").redirect('/');
+            }
         } else {
             // Access Denied
             req.flash('error', 'No autorizado');
-            return res.redirect('/');
+            return res.clearCookie("info").redirect('/');
         }
     } catch (error) {
         // Access Denied
         req.flash('error', 'No autorizado');
-        return res.redirect('/');
+        return res.clearCookie("info").redirect('/');
     }
 };
 

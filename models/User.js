@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, lowercase: true, unique: true, required: [true, "no puede estar en blanco."], match: [/\S+@\S+\.\S+/, 'es inválido.'], index: true },
     level: { type: String, lowercase: true, required: true },
     hash: String,
-    salt: String
+    salt: String,
+    active: Boolean
 }, { timestamps: true });
 
 UserSchema.methods.setPassword = function (password) {
@@ -28,6 +29,7 @@ UserSchema.methods.generateJWT = function () {
         id: this._id,
         username: this.username,
         level: this.level,
+        active: this.active,
         exp: parseInt(exp.getTime() / 1000),
     }, process.env.secret);
 };

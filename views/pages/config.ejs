@@ -4,6 +4,7 @@
             <li class="tablinks" onclick="openTab(event, 'users')" id="defaultOpen">Usuarios</li>
             <li class="tablinks" onclick="openTab(event, 'proser')">Productos/Servicios</li>
             <li class="tablinks" onclick="openTab(event, 'vips')">Vips</li>
+            <li class="tablinks" onclick="openTab(event, 'covers')">Covers</li>
         </ul>
 
         <div id="users" class="tabcontent">
@@ -33,6 +34,38 @@
                     <button>Guardar</button>
                 </div>
             </form>
+            <section>
+                <% for( let i=0; i < users.length; i++ ) { %>
+                    <article>
+                        <h2>
+                            <%= users[i].username %>
+                        </h2>
+                        <div>
+                            <% if (users[i].username !=info.username) { %>
+                                <% if (users[i].active) { %>
+                                    <label class="switch">
+                                        <input type="checkbox" onchange="toogleActive('<%= users[i]._id %>')" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <p>Activo</p>
+                                    <% }else{ %>
+                                        <label class="switch">
+                                            <input type="checkbox" onchange="toogleActive('<%= users[i]._id %>')">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <p>No activo</p>
+                                        <% } %>
+                                            <% }else{ %>
+                                                <% if (users[i].active) { %>
+                                                    <p>Activo</p>
+                                                    <% }else{ %>
+                                                        <p>No activo</p>
+                                                        <% } %>
+                                                            <% } %>
+                        </div>
+                    </article>
+                    <% } %>
+            </section>
         </div>
 
         <div id="proser" class="tabcontent">
@@ -41,7 +74,40 @@
         </div>
 
         <div id="vips" class="tabcontent">
-            <h3>Vips</h3>
+            <form action="/config/signup" method="post">
+                <div class="formInput">
+                    <label for="">Nombre:</label>
+                    <input type="text" name="name" placeholder="Introduce nombre" required>
+                </div>
+                <div class="formInput">
+                    <label for="">Contraseña:</label>
+                    <input type="password" name="password" placeholder="Introduce contraseña" required>
+                </div>
+                <div class="formInput">
+                    <label for="">Entradas(mes):</label>
+                    <input type="number" name="entraces" placeholder="Introduce entradas" required>
+                </div>
+                <div class="formInput">
+                    <label for="">Descuento:</label>
+                    <input type="range" id="discount" list="values" value="0" min="0" max="100" />
+
+                    <datalist id="values">
+                        <option value="0"></option>
+                        <option value="25"></option>
+                        <option value="50"></option>
+                        <option value="75"></option>
+                        <option value="100"></option>
+                    </datalist>
+                    <input class="small" type="number" name="discount"  value="0" id="displayer" readonly>%
+                </div>
+                <div class="formInput">
+                    <button>Guardar</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="covers" class="tabcontent">
+            <h3>Covers</h3>
             <p>Tokyo is the capital of Japan.</p>
         </div>
 
@@ -70,3 +136,16 @@
         document.getElementById("defaultOpen").click();
     </script>
     <%- include('../templates/footer.ejs') %>
+        <script>
+            const toogleActive = (_id) => {
+                fetch('users/toogleActive/' + _id);
+            }
+
+            const discount = document.getElementById('discount');
+            discount.addEventListener('mousemove',()=>{
+                document.getElementById('displayer').value = discount.value;
+            });
+            discount.addEventListener('change',()=>{
+                document.getElementById('displayer').value = discount.value;
+            });
+        </script>
